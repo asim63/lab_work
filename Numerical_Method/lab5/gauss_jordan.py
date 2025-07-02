@@ -17,12 +17,7 @@ def gauss_jordan(A, b):
                 AugmentedMatrix[j] = AugmentedMatrix[j] - AugmentedMatrix[j, i] * AugmentedMatrix[i]
 
     return AugmentedMatrix[:, -1]
-
-# Example system of equations:
-# 3x - 2y + z = 2
-# x + 3y + 2z = 8
-# 2x + y + z = 5
-
+    
 A = np.array([[3, -2, 1], [1, 3, 2], [2, 1, 1]], dtype=float)
 b = np.array([2, 8, 5], dtype=float)
 
@@ -47,6 +42,7 @@ Z3 = 5 - X - Y
 ax.plot_surface(X, Y, Z1, alpha=0.5, rstride=100, cstride=100, color='r')
 ax.plot_surface(X, Y, Z2, alpha=0.5, rstride=100, cstride=100, color='g')
 ax.plot_surface(X, Y, Z3, alpha=0.5, rstride=100, cstride=100, color='b')
+ax.set_title('AsimBCT08')
 
 # Labels
 ax.set_xlabel('X axis')
