@@ -1,0 +1,53 @@
+clc;
+clear all;
+close all;
+fs = 8000;
+fm = 20;
+fc = 500;
+Am = 1;
+Ac = 1;
+t = [0: 0.1*fs]/fs;
+m = Am * cos(2 * pi * fm * t);
+c = Ac * cos(2 * pi * fc * t);
+a = Am / Ac;
+S1 = Ac*[1 + a * cos(2*pi*fm*t)].*cos(2*pi*fc*t);
+subplot(3,3,1:3);
+plot(t,m);
+xlabel('Time');
+ylabel('Amplitude');
+title('Modulating signal/Asim');
+grid on;
+
+subplot(3,3,4:6);
+plot(t,c);
+xlabel('Time');
+ylabel('Amplitude');
+title('Carrier Signal/Asim');
+grid on;
+
+subplot(3,3,7);
+plot(t,S1);
+xlabel('Time');
+ylabel('Amplitude');
+title('Perfect Modulated Signal');
+grid on ;
+
+subplot(3,3,8);
+Am = 0.8;
+a = Am / Ac;
+S2 = Ac*[1 + a * cos(2*pi*fm*t)].*cos(2*pi*fc*t);
+plot(t,S2);
+xlabel('Time');
+ylabel('Amplitude');
+title('Under Modulated Signal');
+grid on ;
+
+subplot(3,3,9);
+Am = 3;
+a = Am / Ac;
+S3 = Ac*[1 + a * cos(2*pi*fm*t)].*cos(2*pi*fc*t);
+plot(t,S3);
+xlabel('Time');
+ylabel('Amplitude');
+title('Over Modulated Signal');
+grid on ;

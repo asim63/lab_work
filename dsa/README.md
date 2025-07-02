@@ -1,3 +1,2 @@
-# DSA-LAB
-This repo contains the problems we performed on the lab of DSA
-
+# Numerical_Method
+This repo contains the problems we coded on the lab of Numerical Methods
