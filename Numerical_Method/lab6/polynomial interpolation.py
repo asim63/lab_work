@@ -60,7 +60,7 @@ for xi, yi in zip(x_vals, y_vals):
     plt.text(xi, yi, f"({xi}, {yi})", fontsize=8, ha='right')
 
 plt.plot(x_plot, y_plot, color='blue', label=f'y = {poly_str}')
-plt.title('Asim Polynomial Interpolation')
+plt.title('Asim's Polynomial Curve Fitting')
 plt.xlabel('x')
 plt.ylabel('y')
 plt.legend()
