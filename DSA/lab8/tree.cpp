@@ -24,8 +24,8 @@ void pre_Order(Node* root){
 }
 void post_Order(Node* root){
     if(root == NULL) return;
-    pre_Order(root->left);
-    pre_Order(root->right);
+    post_Order(root->left);
+    post_Order(root->right);
     cout<<root->data<<" ";
 }
 
