@@ -1,14 +1,16 @@
 import numpy as np
 import matplotlib.pyplot as plt
-
+import sys
 def f(x):
     return x*np.sin(x) + np.cos(x)
 def df(x):
     return x*np.cos(x) 
 
-
-
 a = int(input("Enter your initial guess: "))
+while df(a) == 0:
+    print("The derivative is zero at the initial guess. Please choose a different initial guess.")
+    a = int(input("Enter your initial guess: "))
+
 E = 0.00005
 c = a - f(a) / df(a)
 while(not df(c) ==0 and  abs(f(c)) > E):
@@ -31,3 +33,4 @@ plt.ylabel("f(x)")
 plt.grid(True)
 plt.legend()
 plt.show()
+

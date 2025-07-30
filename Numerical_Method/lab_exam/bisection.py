@@ -34,7 +34,7 @@ def bisection(a, b):
 
     plt.figure(figsize=(8, 5))
     plt.axhline(0, color='gray', linestyle="solid")  # x-axis
-    plt.axvline(c, color='red', linestyle='--', label=f'Root ≈ {c}')  # root line
+    plt.axvline(c, color='red', linestyle='--', label=f'Root ≈ {c:.4f}')  # root line
     plt.plot(x, y, label='f(x) = x*sin(x) + cos(x)', color='blue')
     plt.scatter(c, f(c), color='red', zorder=5)
 
@@ -46,8 +46,9 @@ def bisection(a, b):
     plt.show()
     
 
-bisection(a, b)
-# for i in range(0,20):
-#     j= i + 1
-#     if( f(i) * f(j) < 0):
-#         bisection(i, j)
+# bisection(a, b)
+
+for i in range(0,20):
+    j= i + 1
+    if( f(i) * f(j) < 0):
+        bisection(i, j)
