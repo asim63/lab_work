@@ -29,7 +29,7 @@ void pop(Node* &head)
     delete temp;
 }
 
-void display(Node* head){
+void display(Node* &head){
     Node* temp = head;
     cout<<"Stack(from top to bottom):";
     while(temp!= NULL){
