@@ -48,8 +48,10 @@ if l != n:
 
 else:
     #exponential fit
+    # y = a e^(bx) 
     ylog = np.log(y)
     a_log, b = linear_fit(x, ylog)
     ex_plot(x, y, a_log, b)
+
 
 
