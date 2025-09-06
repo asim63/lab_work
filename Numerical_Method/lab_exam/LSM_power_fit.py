@@ -48,6 +48,7 @@ if l != m:
     
 xlog = np.log(x)
 ylog = np.log(y)
-
+# power_fit
+#y = a* x^b
 a_log, b = linear_fit(xlog, ylog)
 power_plot(x,y,a_log,b)
