@@ -43,29 +43,11 @@ def plot(x_points,y_points,a,b):
     plt.grid(True)
     plt.show()
     
-def ex_plot(x_points,y_points,a_log,b_log):
-    x_vals = np.linspace(min(x_points)-1, max(x_points)+1, 200)
-    a = np.exp(a_log)
-    y_vals =  a * np.exp(b_log*x_vals)
-    plt.figure()
-    plt.axhline(0,color = 'gray', linestyle = 'solid')
-    plt.scatter(x_points, y_points, color = 'red', label = 'Data Points')
-    plt.plot(x_vals, y_vals,label = 'linear fit', color = "blue")
-    plt.title("Linear fit Visualization")
-    plt.xlabel("x")
-    plt.ylabel("y") 
-    plt.legend()
-    plt.grid(True)
-    plt.show()
     
 if l != n:
     print("Error: The number of x and y points must be the same.")
     
 else:
-
-    a ,b = linear_fit(x,y)
-    plot(x, y, a, b)
-    
     #exponential fit
     ylog = np.log(y)
     a_log, b_log = linear_fit(x, ylog)
