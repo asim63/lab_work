@@ -1,0 +1,25 @@
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.card {
+  background-color: #d95656;
+  padding: 10px;
+  text-align: center;
+  border-radius: 8px;
+  font-size: 18px;
+  flex: 0 0 18%;
+}
+
+@media (max-width: 760px) {
+  .card {
+    flex: 0 0 30%; /* 2 cards per row */
+  }
+}
+
+@media (max-width: 600px) {
+  .card {
+    flex: 0 0 100%; /* 1 card per row */
+  }
+}

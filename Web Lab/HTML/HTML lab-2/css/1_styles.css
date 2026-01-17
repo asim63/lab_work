@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: white;
+}
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 30px;
+  background-color: #382a2a;
+}
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+}
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+.menu a {
+  text-decoration: none;
+  font-size: 16px;
+}
+.login-btn {
+  padding: 8px 16px;
+  background-color: #3b61b4;
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 30px;
+  cursor: pointer;
+}
