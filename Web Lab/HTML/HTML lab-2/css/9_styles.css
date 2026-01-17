@@ -1,0 +1,37 @@
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #90ee90;
+  transition: background-color 0.3s;
+}
+
+.content {
+  text-align: center;
+  padding: 20px 40px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+}
+
+/* Tablet (≤768px) */
+@media (max-width: 768px) {
+  body {
+    background-color: #bc2539; /* Light red for tablet */
+  }
+}
+
+/* Mobile (≤576px) */
+@media (max-width: 576px) {
+  body {
+    background-color: #add8e6; /* Light blue for mobile */
+  }
+}
+
+/* Optional: Desktop ≥992px (if you want to explicitly define desktop) */
+@media (min-width: 992px) {
+  body {
+    background-color: #90ee90; /* Light green for desktop */
+  }
+}

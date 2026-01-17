@@ -1,0 +1,19 @@
+body {
+  background-color: #f0f0f0;
+}
+
+.box {
+  background-color: #0077cc;
+  color: white;
+  text-align: center;
+  width: 200px;
+  height: 100px;
+}
+
+.padding-box {
+  padding: 20px;
+}
+
+.margin-box {
+  margin: 20px;
+}

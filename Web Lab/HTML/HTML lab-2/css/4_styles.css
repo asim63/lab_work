@@ -1,0 +1,35 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: 200px 1fr auto;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "header header"
+    "sidebar content"
+    "footer footer";
+
+  min-height: 100vh;
+}
+
+.header {
+  grid-area: header;
+  background: #ccc;
+  padding: 20px;
+}
+
+.sidebar {
+  grid-area: sidebar;
+  background: #ddd;
+  padding: 20px;
+}
+
+.content {
+  grid-area: content;
+  background: #eee;
+  padding: 20px;
+}
+
+.footer {
+  grid-area: footer;
+  background: #ccc;
+  padding: 20px;
+}
