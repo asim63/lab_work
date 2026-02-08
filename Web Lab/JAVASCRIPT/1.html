@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Arithmetic Operations</title>
+    <style>
+      body {
+        margin: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #f0f2f5;
+        font-family: Arial, sans-serif;
+      }
+      .container {
+        background: #e4e2d8;
+        padding: 40px;
+        border-radius: 6px;
+        width: 100%;
+        max-width: 320px;
+        text-align: center;
+      }
+      input {
+        width: 50%;
+        padding: 8px;
+        margin: 8px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      .btn-group {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 10px;
+      }
+      button {
+        margin: 5px;
+        padding: 8px 12px;
+        border: none;
+        border-radius: 4px;
+        background: #02bc9d;
+        color: white;
+        cursor: pointer;
+        flex: 1 1 40%;
+      }
+      button:hover {
+        background: #02872e;
+      }
+      #result {
+        margin-top: 15px;
+        font-weight: bold;
+        color: #197c49;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Q1 - Asim Poudel</h2>
+      <label>Operand 1:</label>
+      <input type="number" id="operand1" placeholder="Enter first number" />
+
+      <label>Operand 2:</label>
+      <input type="number" id="operand2" placeholder="Enter second number" />
+
+      <div class="btn-group">
+        <button onclick="calculate('add')">Add</button>
+        <button onclick="calculate('sub')">Sub</button>
+        <button onclick="calculate('mul')">Mul</button>
+        <button onclick="calculate('div')">Div</button>
+        <button onclick="calculate('mod')">Mod</button>
+      </div>
+
+      <div id="result">Result:</div>
+    </div>
+
+    <script>
+      function calculate(operation) {
+        const op1 = parseFloat(document.getElementById("operand1").value);
+        const op2 = parseFloat(document.getElementById("operand2").value);
+        let res;
+
+        if (isNaN(op1) || isNaN(op2)) {
+          res = "Please enter valid numbers!";
+        } else {
+          switch (operation) {
+            case "add":
+              res = op1 + op2;
+              break;
+            case "sub":
+              res = op1 - op2;
+              break;
+            case "mul":
+              res = op1 * op2;
+              break;
+            case "div":
+              res = op2 !== 0 ? op1 / op2 : "Division by zero!";
+              break;
+            case "mod":
+              res = op2 !== 0 ? op1 % op2 : "Modulo by zero!";
+              break;
+          }
+        }
+        document.getElementById("result").innerText = "Result: " + res;
+      }
+    </script>
+  </body>
+</html>
