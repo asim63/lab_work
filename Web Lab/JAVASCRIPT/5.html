@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Image Description Change</title>
+    <style>
+      #container {
+        width: 300px;
+        text-align: center;
+        margin: 50px auto;
+      }
+      img {
+        width: 100%;
+        cursor: pointer;
+      }
+      p {
+        font-size: 18px;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <img
+        src="scenery.png"
+        id="myImage"
+        onmouseover="changeDescription('(Hovered) This is a beautiful image!')"
+        onmouseout="
+          changeDescription('Hover over the image to see description')
+        "
+      />
+      <p id="description">Hover over the image to see description</p>
+
+      <h2 style="text-align: center">Q5. Asim Poudel</h2>
+    </div>
+
+    <script>
+      function changeDescription(text) {
+        document.getElementById("description").innerText = text;
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Change Colour every second</title>
+  </head>
+  <body>
+    <h1 style="text-align: center">Q4. Asim Poudel</h1>
+    <h2 style="text-align: center">Change colour each second.</h2>
+    <script>
+      function changeColor() {
+        const colors = ["red", "blue", "green", "yellow", "purple", "orange"];
+
+        let randomIndex = Math.floor(Math.random() * colors.length);
+
+        document.body.style.backgroundColor = colors[randomIndex];
+      }
+
+      setInterval(changeColor, 1000);
+    </script>
+  </body>
+</html>
