@@ -1,0 +1,198 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form onsubmit="handleSubmit(event)" name="myForm">
+      <label for="name">Name: </label>
+      <input type="text" id="name" name="name" placeholder="Name" required />
+      <br /><br />
+      <label>Gender: </label>
+      <input type="radio" name="gender" id="male" value="M" required />
+      <label for="male">Male</label>
+      <input type="radio" name="gender" id="female" value="F" />
+      <label for="female">Female</label>
+      <input type="radio" name="gender" id="other" value="O" />
+      <label for="other">Other</label>
+      <br /><br />
+      <label>Hobbies: </label>
+      <input type="checkbox" name="hobbies" value="football" id="football" />
+      <label for="football">Football</label>
+      <input
+        type="checkbox"
+        name="hobbies"
+        value="tableTennis"
+        id="tableTennis"
+      />
+      <label for="tableTennis">Table Tennis</label>
+      <input
+        type="checkbox"
+        name="hobbies"
+        value="basketball"
+        id="basketball"
+      />
+      <label for="basketball">Basketball</label>
+      <br /><br />
+      <label for="appointment">Appointment Date & Time: </label>
+      <input
+        type="datetime-local"
+        id="appointment"
+        name="appointment"
+        required
+      />
+      <br /><br />
+      <label for="country">Country: </label>
+      <select id="country" name="country" required>
+        <option value="">-- Select --</option>
+        <option value="Nepal">Nepal</option>
+        <option value="India">India</option>
+        <option value="USA">USA</option>
+      </select>
+      <br /><br />
+      <label for="email">Email: </label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Email"
+        required
+      />
+      <br /><br />
+      <label for="resume">Upload Resume (PDF / Image / Word): </label>
+      <input
+        type="file"
+        id="resume"
+        name="resume"
+        accept=".pdf,.jpg,.jpeg,.png,.doc,.docx"
+      />
+      <br /><br />
+      <label for="password">Password: </label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="Password"
+        required
+      />
+      <br /><br />
+      <label for="confirmPassword">confirm Password: </label>
+      <input
+        type="password"
+        id="confirmPassword"
+        name="confirmPassword"
+        placeholder="Confirm Password"
+        required
+      />
+      <br /><br />
+      <button type="submit">Submit</button>
+    </form>
+
+    <script>
+      function handleSubmit(event) {
+        event.preventDefault();
+
+        const form = document.forms["myForm"];
+        const formData = new FormData(form);
+
+        const name = formData.get("name").trim();
+        const gender = formData.get("gender");
+        const hobbies = formData.getAll("hobbies");
+        const appointment = formData.get("appointment");
+        const country = formData.get("country");
+        const resume = formData.get("resume");
+        const email = formData.get("email").trim();
+        const password = formData.get("password").trim();
+        const confirmPassword = formData.get("confirmPassword").trim();
+
+        if (!name) {
+          alert("Name is required");
+          return;
+        }
+
+        if (!gender) {
+          alert("Please select gender");
+          return;
+        }
+
+        if (!hobbies.length) {
+          alert("Please select at least one hobby");
+          return;
+        }
+
+        if (!appointment) {
+          alert("Please select appointment");
+          return;
+        }
+
+        const now = new Date();
+        const selectedDate = new Date(appointment);
+        if (selectedDate < now) {
+          alert("Appointment date & time cannot be in the past");
+          return;
+        }
+
+        if (!country) {
+          alert("Please select gender");
+          return;
+        }
+
+        if (!email) {
+          alert("Email is required");
+          return;
+        }
+
+        if (!email.includes("@")) {
+          alert("Please enter a valid email");
+          return;
+        }
+
+        if (!resume.name) {
+          alert("Please upload resume");
+          return;
+        }
+
+        const allowedExtensions = ["pdf", "jpg", "jpeg", "png", "doc", "docx"];
+        const extension = resume.name.split(".").pop().toLowerCase();
+        if (!allowedExtensions.includes(extension))
+          return alert("Unsupported file format");
+
+        // Check file size (less than 2MB)
+        const maxSize = 2 * 1024 * 1024; // 2 MB in bytes
+        if (resume.size > maxSize) {
+          alert("File size should be less than 2MB");
+          return;
+        }
+
+        if (!password) {
+          alert("Password is required");
+          return;
+        }
+
+        if (password !== confirmPassword) {
+          alert("Password and Confirm Password did not match");
+          return;
+        }
+
+        if (password.length < 8) {
+          alert("Password must be at least 8 characters");
+          return;
+        }
+
+        console.log("Form data:", {
+          name,
+          gender,
+          hobbies,
+          appointment,
+          resume,
+          country,
+          email,
+          password,
+          confirmPassword,
+        });
+        alert("Form submitted successfully!");
+      }
+    </script>
+  </body>
+</html>

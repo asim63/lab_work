@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <title>Live Clock</title>
+    <style>
+      #clock {
+        text-align: center;
+        margin-top: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <h3 id="clock">--:--:--</h3>
+    <h2 style="text-align: center">Q13. Asim Poudel</h2>
+    <script>
+      function updateClock() {
+        const now = new Date();
+
+        // Get hours, minutes, seconds
+        let hours = now.getHours().toString().padStart(2, "0");
+        let minutes = now.getMinutes().toString().padStart(2, "0");
+        let seconds = now.getSeconds().toString().padStart(2, "0");
+
+        // Format: HH:MM:SS
+        const timeString = `${hours}:${minutes}:${seconds}`;
+
+        // Display in the page
+        document.getElementById("clock").textContent = timeString;
+      }
+
+      // Update clock immediately
+      updateClock();
+
+      // Update every 1000ms (1 second)
+      setInterval(updateClock, 1000);
+    </script>
+  </body>
+</html>

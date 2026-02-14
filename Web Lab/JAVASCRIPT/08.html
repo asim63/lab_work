@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Background Color Changer</title>
+    <style>
+      body {
+        text-align: center;
+      }
+
+      form {
+        display: inline-block;
+        background-color: #f2f2f2;
+        padding: 20px 40px;
+        border-radius: 8px;
+      }
+
+      label {
+        margin: 10px 0;
+        font-size: 18px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Choose Background Color</h2>
+
+    <form id="colorForm">
+      <label><input type="radio" name="color" value="green" /> Green</label>
+      <label><input type="radio" name="color" value="red" /> Red</label>
+      <label><input type="radio" name="color" value="blue" /> Blue</label>
+      <label><input type="radio" name="color" value="black" /> Black</label>
+    </form>
+    <h2 style="text-align: center">Q5. Asim Poudel</h2>
+    <script>
+      const radios = document.querySelectorAll('input[name="color"]');
+
+      radios.forEach((radio) => {
+        radio.addEventListener("click", function () {
+          document.body.style.backgroundColor = this.value;
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Simple Modal Popup</title>
+    <style>
+      .modal {
+        display: none; /* hidden by default */
+        position: fixed; /* stays in place */
+        z-index: 1; /* on top */
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8); /* semi-transparent */
+      }
+
+      .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 300px;
+        text-align: center;
+        border-radius: 8px;
+      }
+
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 24px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .close:hover {
+        color: #000;
+      }
+
+      #openBtn {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        margin-top: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Simple Modal Example</h2>
+    <button id="openBtn">Open Modal</button>
+    <h2>Q5. Asim Poudel</h2>
+
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>Modal Popup</h3>
+        <p>This is a simple modal popup example!</p>
+      </div>
+    </div>
+
+    <script>
+      const modal = document.getElementById("myModal");
+      const openBtn = document.getElementById("openBtn");
+      const closeBtn = document.querySelector(".close");
+
+      openBtn.onclick = function () {
+        modal.style.display = "block";
+      };
+      closeBtn.onclick = function () {
+        modal.style.display = "none";
+      };
+    </script>
+  </body>
+</html>

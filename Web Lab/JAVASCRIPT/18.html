@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Form Validation Example</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 50px;
+      }
+      form {
+        width: 300px;
+      }
+      input {
+        width: 100%;
+        padding: 8px;
+        margin: 10px 0;
+        box-sizing: border-box;
+      }
+      .error {
+        color: red;
+        font-size: 14px;
+      }
+      button {
+        padding: 10px 15px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Form Validation Example</h2>
+
+    <form id="myForm" onsubmit="return validateForm();">
+      <label>Username:</label>
+      <input type="text" id="username" />
+      <span id="userError" class="error"></span><br />
+
+      <label>Age:</label>
+      <input type="number" id="age" />
+      <span id="ageError" class="error"></span><br />
+
+      <label>Password:</label>
+      <input type="password" id="password" />
+      <span id="passError" class="error"></span><br />
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <script>
+      // Validate Username
+      function validateUsername() {
+        const username = document.getElementById("username").value.trim();
+        if (username === "") {
+          document.getElementById("userError").innerText =
+            "Username cannot be empty";
+          return false;
+        } else {
+          document.getElementById("userError").innerText = "";
+          return true;
+        }
+      }
+
+      // Validate Age
+      function validateAge() {
+        const age = parseInt(document.getElementById("age").value);
+        if (isNaN(age)) {
+          document.getElementById("ageError").innerText = "Age cannot be empty";
+          return false;
+        } else if (age < 8 || age > 60) {
+          document.getElementById("ageError").innerText =
+            "Age must be between 8 and 60";
+          return false;
+        } else {
+          document.getElementById("ageError").innerText = "";
+          return true;
+        }
+      }
+
+      // Validate Password
+      function validatePassword() {
+        const password = document.getElementById("password").value;
+        const regex = /^[A-Za-z].*\d$/; // Starts with letter, ends with digit
+
+        if (password === "") {
+          document.getElementById("passError").innerText =
+            "Password cannot be empty";
+          return false;
+        } else if (password.length < 6) {
+          document.getElementById("passError").innerText =
+            "Password must be at least 6 characters";
+          return false;
+        } else if (!regex.test(password)) {
+          document.getElementById("passError").innerText =
+            "Password must start with a letter and end with a digit";
+          return false;
+        } else {
+          document.getElementById("passError").innerText = "";
+          return true;
+        }
+      }
+
+      // Validate Form
+      function validateForm() {
+        const isUsernameValid = validateUsername();
+        const isAgeValid = validateAge();
+        const isPasswordValid = validatePassword();
+
+        return isUsernameValid && isAgeValid && isPasswordValid;
+      }
+    </script>
+  </body>
+</html>
