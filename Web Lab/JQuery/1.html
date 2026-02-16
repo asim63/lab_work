@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Image Hover Example</title>
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        // Mouse Enter Event
+        $("#myImage").mouseenter(function () {
+          $("#description").text("You are hovering over the image!");
+        });
+
+        // Mouse Leave Event
+        $("#myImage").mouseleave(function () {
+          $("#description").text("This is a beautiful eye image.");
+        });
+      });
+    </script>
+
+    <style>
+      div {
+        width: 300px;
+        padding: 10px;
+        border: 1px solid black;
+      }
+      img {
+        width: 100%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div>
+      <img id="myImage" src="eye.png" alt="Sample Image" />
+      <p id="description">This is a beautiful eye image.</p>
+    </div>
+  </body>
+</html>
