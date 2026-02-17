@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <title>AJAX Example (jQuery)</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  </head>
+
+  <script>
+    function loadContent() {
+      $.ajax({
+        url: "https://jsonplaceholder.typicode.com/posts",
+        method: "GET",
+        success: function (data) {
+          $("#content").empty(); // clear previous content
+
+          data.forEach(function (post) {
+            $("#content").append(
+              `<p><strong>${post.id}:</strong> ${post.title}</p>`,
+            );
+          });
+        },
+        error: function (error) {
+          console.error("Error fetching posts:", error);
+          $("#content").text("Error fetching posts");
+        },
+      });
+    }
+  </script>
+
+  <body>
+    <h1>AJAX Demo (jQuery)</h1>
+    <button onclick="loadContent()">Load Content</button>
+    <div id="content"></div>
+  </body>
+</html>
