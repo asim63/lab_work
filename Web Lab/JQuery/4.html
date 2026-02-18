@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Program 4 - Show Hide</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      #targetDiv {
+        margin-top: 12px;
+        padding: 15px;
+        border: 1px solid #888;
+        background: #f9fff0;
+        border-radius: 6px;
+      }
+      button {
+        margin-right: 6px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Q4. Asim Poudel</h2>
+    <button id="showBtn">Show</button>
+    <button id="hideBtn">Hide</button>
+    <button id="toggleBtn">Toggle</button>
+
+    <div id="targetDiv">
+      This is the div to show and hide using jQuery functions.
+    </div>
+
+    <script>
+      $("#showBtn").on("click", function () {
+        $("#targetDiv").show(300);
+      });
+      $("#hideBtn").on("click", function () {
+        $("#targetDiv").hide(300);
+      });
+      $("#toggleBtn").on("click", function () {
+        $("#targetDiv").toggle(300);
+      });
+    </script>
+  </body>
+</html>

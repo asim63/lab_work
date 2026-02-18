@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Program 5 - Selectors</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      .topic {
+        padding: 6px;
+        border: 1px solid #ccc;
+        margin: 4px 0;
+      }
+      .highlight {
+        background: #fff4cc;
+      }
+    </style>
+  </head>
+  <body>
+    <h2 id="mainTitle">Q5. Asim Poudel</h2>
+
+    <button id="idSelectorBtn">Use ID Selector</button>
+    <button id="classSelectorBtn">Use Class Selector</button>
+    <button id="elementSelectorBtn">Use Element Selector</button>
+    <button id="attributeSelectorBtn">Use Attribute Selector</button>
+    <button id="positionSelectorBtn">Use :even Selector</button>
+
+    <p class="topic">Item 1</p>
+    <p class="topic">Item 2</p>
+    <p class="topic">Item 3</p>
+    <p class="topic">Item 4</p>
+
+    <input
+      type="text"
+      name="email"
+      placeholder="Email will be filled by selector"
+    />
+
+    <script>
+      $("#idSelectorBtn").on("click", function () {
+        $("#mainTitle").css("color", "#c0392b");
+      });
+
+      $("#classSelectorBtn").on("click", function () {
+        $(".topic").addClass("highlight");
+      });
+
+      $("#elementSelectorBtn").on("click", function () {
+        $("p").css("font-weight", "bold");
+      });
+
+      $("#attributeSelectorBtn").on("click", function () {
+        $("input[name='email']").val("asimdkt@gmail.com");
+      });
+
+      $("#positionSelectorBtn").on("click", function () {
+        $(".topic:even").css("border", "2px solid #2e86de");
+      });
+    </script>
+  </body>
+</html>

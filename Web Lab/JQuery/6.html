@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Program 6 - Form Validation</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      form {
+        max-width: 700px;
+        padding: 16px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+      }
+      .row {
+        margin-bottom: 10px;
+      }
+      label {
+        display: inline-block;
+        min-width: 180px;
+        vertical-align: top;
+      }
+      input,
+      select {
+        width: 300px;
+        padding: 6px;
+      }
+      .inline input {
+        width: auto;
+      }
+      .error {
+        color: #b00020;
+        margin: 4px 0;
+      }
+      .ok {
+        color: #0b7a2d;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Q6. Asim Poudel</h2>
+
+    <form id="appForm">
+      <div class="row">
+        <label for="name">Name:</label><input id="name" type="text" />
+      </div>
+
+      <div class="row inline">
+        <label>Gender:</label>
+        <input type="radio" name="gender" value="Male" /> Male
+        <input type="radio" name="gender" value="Female" /> Female
+        <input type="radio" name="gender" value="Other" /> Other
+      </div>
+
+      <div class="row">
+        <label for="phone">Phone Number:</label><input id="phone" type="tel" />
+      </div>
+
+      <div class="row inline">
+        <label>Hobbies:</label>
+        <input type="checkbox" name="hobbies" value="Reading" /> Reading
+        <input type="checkbox" name="hobbies" value="Sports" /> Sports
+        <input type="checkbox" name="hobbies" value="Music" /> Music
+      </div>
+
+      <div class="row">
+        <label for="appointment">Appointment Date and Time:</label>
+        <input id="appointment" type="datetime-local" />
+      </div>
+
+      <div class="row">
+        <label for="country">Country:</label>
+        <select id="country">
+          <option value="">Select Country</option>
+          <option value="Nepal">Nepal</option>
+          <option value="India">India</option>
+          <option value="USA">USA</option>
+        </select>
+      </div>
+
+      <div class="row">
+        <label for="resume">Resume:</label><input id="resume" type="file" />
+      </div>
+      <div class="row">
+        <label for="email">Email:</label><input id="email" type="email" />
+      </div>
+      <div class="row">
+        <label for="password">Password:</label
+        ><input id="password" type="password" />
+      </div>
+      <div class="row">
+        <label for="confirmPassword">Confirm Password:</label
+        ><input id="confirmPassword" type="password" />
+      </div>
+
+      <div class="row"><button type="submit">Submit</button></div>
+    </form>
+
+    <div id="messages"></div>
+
+    <script>
+      $(function () {
+        const now = new Date();
+        const local = new Date(now.getTime() - now.getTimezoneOffset() * 60000)
+          .toISOString()
+          .slice(0, 16);
+        $("#appointment").attr("min", local);
+
+        $("#appForm").on("submit", function (e) {
+          e.preventDefault();
+          const errors = [];
+
+          const name = $("#name").val().trim();
+          const gender = $("input[name='gender']:checked").val();
+          const phone = $("#phone").val().trim();
+          const hobbiesCount = $("input[name='hobbies']:checked").length;
+          const appointment = $("#appointment").val();
+          const country = $("#country").val();
+          const email = $("#email").val().trim();
+          const password = $("#password").val();
+          const confirmPassword = $("#confirmPassword").val();
+
+          if (!name) errors.push("Name is required.");
+          if (!gender) errors.push("Gender is required.");
+          if (!phone) errors.push("Phone number is required.");
+          if (!hobbiesCount) errors.push("At least one hobby is required.");
+          if (!appointment)
+            errors.push("Appointment date and time is required.");
+          if (!country) errors.push("Country is required.");
+          if (!email) errors.push("Email is required.");
+          if (!password) errors.push("Password is required.");
+          if (!confirmPassword) errors.push("Confirm Password is required.");
+
+          if (appointment) {
+            const selectedDate = new Date(appointment);
+            if (selectedDate < new Date()) {
+              errors.push("Appointment date cannot be in the past.");
+            }
+          }
+
+          const fileInput = $("#resume")[0];
+          if (!fileInput.files.length) {
+            errors.push("Resume is required.");
+          } else {
+            const file = fileInput.files[0];
+            const allowedMime = [
+              "application/pdf",
+              "application/msword",
+              "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+              "image/jpeg",
+              "image/png",
+              "image/gif",
+              "image/webp",
+            ];
+            const extension = file.name.split(".").pop().toLowerCase();
+            const allowedExt = [
+              "pdf",
+              "doc",
+              "docx",
+              "jpg",
+              "jpeg",
+              "png",
+              "gif",
+              "webp",
+            ];
+
+            if (
+              !allowedMime.includes(file.type) &&
+              !allowedExt.includes(extension)
+            ) {
+              errors.push("Resume must be PDF, MS Word, or an image file.");
+            }
+            if (file.size > 2 * 1024 * 1024) {
+              errors.push("File size must be less than 2 MB.");
+            }
+          }
+
+          const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (email && !emailPattern.test(email)) {
+            errors.push("Email must be valid.");
+          }
+
+          const phonePattern = /^[0-9]{10}$/;
+          if (phone && !phonePattern.test(phone)) {
+            errors.push("Phone number must be valid (10 digits).");
+          }
+
+          const passwordPattern =
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).{8,}$/;
+          if (password && !passwordPattern.test(password)) {
+            errors.push(
+              "Password must have 8+ chars with uppercase, lowercase, number, and symbol.",
+            );
+          }
+
+          if (password && confirmPassword && password !== confirmPassword) {
+            errors.push("Password and Confirm Password must match.");
+          }
+
+          if (errors.length) {
+            const list = errors
+              .map(function (err) {
+                return "<p class='error'>- " + err + "</p>";
+              })
+              .join("");
+            $("#messages").html("<h3>Validation Errors:</h3>" + list);
+          } else {
+            $("#messages").html(
+              "<p class='ok'>Form submitted successfully.</p>",
+            );
+            this.reset();
+            $("#appointment").attr("min", local);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
