@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+  <head>
+    <title>{{ action }} Note</title>
+    <style>
+      body {
+        font-family: Arial;
+        margin: 30px;
+      }
+      input,
+      textarea {
+        width: 400px;
+        padding: 8px;
+        margin: 5px 0 15px 0;
+        display: block;
+      }
+      textarea {
+        height: 120px;
+      }
+      button {
+        padding: 8px 20px;
+        background: blue;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      .error {
+        color: red;
+      }
+      a {
+        color: gray;
+        margin-left: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>{{ action }} Note</h2>
+    <h4>Asim Poudel | Roll No: 8</h4>
+
+    {% if error %}
+    <p class="error">⚠️ {{ error }}</p>
+    {% endif %}
+
+    <form method="POST">
+      {% csrf_token %}
+      <label>Title</label>
+      <input type="text" name="title" value="{{ note.title }}" />
+
+      <label>Content</label>
+      <textarea name="content">{{ note.content }}</textarea>
+
+      <button type="submit">{{ action }} Note</button>
+      <a href="{% url 'note_list' %}">Cancel</a>
+    </form>
+  </body>
+</html>

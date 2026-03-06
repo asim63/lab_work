@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Appointment Form</title>
+    <style>
+      body {
+        font-family: Arial;
+        margin: 30px;
+        background: #f5f5f5;
+      }
+      .container {
+        background: white;
+        padding: 30px;
+        max-width: 500px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+      h2 {
+        color: #333;
+      }
+      h4 {
+        color: #666;
+        margin-top: -10px;
+      }
+      label {
+        font-weight: bold;
+        display: block;
+        margin-top: 12px;
+      }
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 8px;
+        margin-top: 4px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+      .errorlist {
+        color: red;
+        list-style: none;
+        padding: 0;
+        margin: 4px 0;
+        font-size: 13px;
+      }
+      .non-field-errors {
+        color: red;
+        font-weight: bold;
+      }
+      .success {
+        color: green;
+        font-weight: bold;
+        font-size: 16px;
+      }
+      button {
+        margin-top: 20px;
+        padding: 10px 30px;
+        background: #4a90e2;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 15px;
+        width: 100%;
+      }
+      button:hover {
+        background: #357abd;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Appointment Registration</h2>
+      <h4>Asim Poudel | Roll No: 8</h4>
+
+      {% if success %}
+      <p class="success">✅ Form submitted successfully!</p>
+      {% endif %} {% if form.non_field_errors %}
+      <p class="non-field-errors">⚠️ {{ form.non_field_errors }}</p>
+      {% endif %}
+
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %} {% for field in form %}
+        <label>{{ field.label }}</label>
+        {{ field }} {% if field.errors %}
+        <ul class="errorlist">
+          {% for error in field.errors %}
+          <li>⚠️ {{ error }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %} {% endfor %}
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Delete Note</title>
+    <style>
+      body {
+        font-family: Arial;
+        margin: 30px;
+      }
+      .box {
+        background: #fff3cd;
+        padding: 20px;
+        border: 1px solid #ffc107;
+        border-radius: 8px;
+        width: 400px;
+      }
+      button {
+        padding: 8px 20px;
+        background: red;
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin-right: 10px;
+      }
+      a {
+        padding: 8px 20px;
+        background: gray;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Delete Note</h2>
+    <h4>Asim Poudel | Roll No: 8</h4>
+
+    <div class="box">
+      <p>⚠️ Are you sure you want to delete:</p>
+      <strong>"{{ note.title }}"</strong>
+      <br /><br />
+      <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Yes, Delete</button>
+        <a href="{% url 'note_list' %}">Cancel</a>
+      </form>
+    </div>
+  </body>
+</html>
