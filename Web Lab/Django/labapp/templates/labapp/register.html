@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+  <head>
+    <title>User Registration</title>
+    <style>
+      body {
+        font-family: Arial;
+        margin: 30px;
+      }
+      .success {
+        color: green;
+        font-weight: bold;
+      }
+      .errorlist {
+        color: red;
+        list-style: none;
+        padding: 0;
+      }
+      input {
+        margin: 5px 0 10px 0;
+        padding: 5px;
+        width: 300px;
+        display: block;
+      }
+      button {
+        padding: 8px 20px;
+        background: blue;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>User Registration</h2>
+    <h4>Asim Poudel | Roll No: 8</h4>
+
+    {% if success %}
+    <p class="success">✅ Registration successful!</p>
+    {% endif %}
+
+    <form method="POST">
+      {% csrf_token %} {% for field in form %}
+      <label>{{ field.label }}</label>
+      {{ field }} {% if field.errors %}
+      <ul class="errorlist">
+        {% for error in field.errors %}
+        <li style="color: red">{{ error }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %} {% endfor %}
+      <button type="submit">Register</button>
+    </form>
+  </body>
+</html>
