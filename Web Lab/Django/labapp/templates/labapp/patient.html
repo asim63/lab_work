@@ -1,0 +1,8 @@
+<h2>Q2. Patient Form - Asim Poudel | Roll No: 8</h2>
+{% if success %}
+<p style="color: green">Patient saved!</p>
+{% endif %}
+<form method="POST">
+  {% csrf_token %} {{ form.as_p }}
+  <button type="submit">Submit</button>
+</form>

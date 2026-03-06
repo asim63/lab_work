@@ -1,0 +1,7 @@
+<h2>Q1. Login - Asim Poudel | Roll No: 8</h2>
+<form method="POST">
+  {% csrf_token %} Username: <input type="text" name="username" /><br />
+  Password: <input type="password" name="password" /><br />
+  <button type="submit">Login</button>
+</form>
+<p style="color: red">{{ error }}</p>
