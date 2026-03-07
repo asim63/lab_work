@@ -1,21 +1,21 @@
-# #question 1
-# from django.shortcuts import render, redirect
-# from .models import Student
+#question 1
+from django.shortcuts import render, redirect
+from .models import Student
 
-# def login_view(request):
-#     error = ""
-#     if request.method == "POST":
-#         username = request.POST.get("username")
-#         password = request.POST.get("password")
-#         try:
-#             student = Student.objects.get(username=username, password=password)
-#             return redirect("dashboard")
-#         except Student.DoesNotExist:
-#             error = "Invalid username/password"
-#     return render(request, "labapp/login.html", {"error": error, "name": "Asim Poudel", "roll": 8})
+def login_view(request):
+    error = ""
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        try:
+            student = Student.objects.get(username=username, password=password)
+            return redirect("dashboard")
+        except Student.DoesNotExist:
+            error = "Invalid username/password"
+    return render(request, "labapp/login.html", {"error": error, "name": "Asim Poudel", "roll": 8})
 
-# def dashboard_view(request):
-#     return render(request, "labapp/dashboard.html", {"name": "Asim Poudel", "roll": 8})
+def dashboard_view(request):
+    return render(request, "labapp/dashboard.html", {"name": "Asim Poudel", "roll": 8})
 
 
 # ##for question 2
@@ -72,32 +72,32 @@
 #             return render(request, "labapp/project-submit.html", {"form": form, "success": True, "name": "Asim Poudel", "roll": 8})
 #     return render(request, "labapp/project-submit.html", {"form": form, "name": "Asim Poudel", "roll": 8})
 
-# #for question 6
-# from django.shortcuts import render, redirect
-# from .models import Note
+#for question 6
+from django.shortcuts import render, redirect
+from .models import Note
 
-# def note_list(request):
-#     notes = Note.objects.all()
-#     return render(request, "labapp/notes.html", {"notes": notes, "name": "Asim Poudel", "roll": 8})
+def note_list(request):
+    notes = Note.objects.all()
+    return render(request, "labapp/notes.html", {"notes": notes, "name": "Asim Poudel", "roll": 8})
 
-# def note_create(request):
-#     if request.method == "POST":
-#         Note.objects.create(title=request.POST['title'], content=request.POST['content'])
-#         return redirect('note_list')
-#     return render(request, "labapp/note_form.html", {"name": "Asim Poudel", "roll": 8})
+def note_create(request):
+    if request.method == "POST":
+        Note.objects.create(title=request.POST['title'], content=request.POST['content'])
+        return redirect('note_list')
+    return render(request, "labapp/note_form.html", {"name": "Asim Poudel", "roll": 8})
 
-# def note_edit(request, pk):
-#     note = Note.objects.get(pk=pk)
-#     if request.method == "POST":
-#         note.title = request.POST['title']
-#         note.content = request.POST['content']
-#         note.save()
-#         return redirect('note_list')
-#     return render(request, "labapp/note_form.html", {"note": note, "name": "Asim Poudel", "roll": 8})
+def note_edit(request, pk):
+    note = Note.objects.get(pk=pk)
+    if request.method == "POST":
+        note.title = request.POST['title']
+        note.content = request.POST['content']
+        note.save()
+        return redirect('note_list')
+    return render(request, "labapp/note_form.html", {"note": note, "name": "Asim Poudel", "roll": 8})
 
-# def note_delete(request, pk):
-#     Note.objects.get(pk=pk).delete()
-#     return redirect('note_list')
+def note_delete(request, pk):
+    Note.objects.get(pk=pk).delete()
+    return redirect('note_list')
 
 #for question 8
 from django.shortcuts import render
