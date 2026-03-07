@@ -75,17 +75,32 @@ def dashboard_view(request):
 #for question 6
 from django.shortcuts import render, redirect
 from .models import Note
+from django.core.exceptions import ValidationError
 
+def note_create(request):
+    error = ""
+    if request.method == "POST":
+        title = request.POST.get("title")
+        content = request.POST.get("content")
+        if title and content:
+            try:
+                note = Note(title=title, content=content)
+                note.full_clean()  # ← this triggers validation
+                note.save()
+                return redirect("note_list")
+            except ValidationError as e:
+                error = e.messages[0]
+        else:
+            error = "Both fields are required"
+    return render(request, "labapp/note_form.html", {
+        "error": error,
+        "action": "Create",
+        "name": "Asim Poudel",
+        "roll": 8
+    })
 def note_list(request):
     notes = Note.objects.all()
     return render(request, "labapp/notes.html", {"notes": notes, "name": "Asim Poudel", "roll": 8})
-
-def note_create(request):
-    if request.method == "POST":
-        Note.objects.create(title=request.POST['title'], content=request.POST['content'])
-        return redirect('note_list')
-    return render(request, "labapp/note_form.html", {"name": "Asim Poudel", "roll": 8})
-
 def note_edit(request, pk):
     note = Note.objects.get(pk=pk)
     if request.method == "POST":
