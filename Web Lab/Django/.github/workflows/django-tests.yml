@@ -1,5 +1,3 @@
-# Asim Poudel | Roll No: 8
-
 name: Django CI
 
 on:
@@ -27,6 +25,7 @@ jobs:
           pip install django
 
       - name: Run Django tests
+        working-directory: Web Lab/Django
         run: |
           python manage.py test labapp
           echo "Tests completed - Asim Poudel Roll 8"
